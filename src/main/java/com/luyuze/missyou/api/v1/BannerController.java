@@ -1,5 +1,6 @@
 package com.luyuze.missyou.api.v1;
 
+import com.luyuze.missyou.exception.http.NotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BannerController {
 
     @GetMapping("/hello")
-    public String test() {
-        return "Hello, 宇泽111";
+    public String test() throws Exception {
+        throw new Exception("xxxxxxx");
     }
 }
