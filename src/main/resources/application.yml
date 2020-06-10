@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+
+missyou:
+  api-package: com.luyuze.missyou.api

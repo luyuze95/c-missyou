@@ -1,5 +1,10 @@
 package com.luyuze.missyou.exception.http;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class HttpException extends RuntimeException {
 
     // 自定义的返回码
