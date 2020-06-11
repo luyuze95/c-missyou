@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 missyou:
   api-package: com.luyuze.missyou.api

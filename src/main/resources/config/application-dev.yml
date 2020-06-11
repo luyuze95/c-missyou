@@ -6,3 +6,12 @@ spring:
     restart:
       enabled: true
       exclude: WEB-INF/**
+  datasource:
+    url: jdbc:mysql://localhost:43306/sleeve?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: lyz950725
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true

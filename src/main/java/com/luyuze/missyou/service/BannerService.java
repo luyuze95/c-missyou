@@ -1,6 +1,8 @@
 package com.luyuze.missyou.service;
 
+import com.luyuze.missyou.model.Banner;
+
 public interface BannerService {
 
-    void getByName(String name);
+    Banner getByName(String name);
 }
