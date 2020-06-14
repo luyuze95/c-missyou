@@ -1,8 +1,5 @@
 package com.luyuze.missyou.api.v1;
 
-import com.github.dozermapper.core.DozerBeanMapper;
-import com.github.dozermapper.core.DozerBeanMapperBuilder;
-import com.github.dozermapper.core.Mapper;
 import com.luyuze.missyou.bo.PageCounter;
 import com.luyuze.missyou.exception.http.NotFoundException;
 import com.luyuze.missyou.model.Spu;
@@ -17,8 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/spu")
