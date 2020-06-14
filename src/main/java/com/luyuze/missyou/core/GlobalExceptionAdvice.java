@@ -38,8 +38,7 @@ public class GlobalExceptionAdvice {
         String requestUrl = request.getRequestURI();
         String method = request.getMethod();
         UnifyResponse message = new UnifyResponse(
-                e.getCode(), "待完善的错误信息", method + " " + requestUrl);
-        // codeConfiguration.getMessage(e.getCode())
+                e.getCode(), codeConfiguration.getMessage(e.getCode()), method + " " + requestUrl);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         HttpStatus httpStatus = HttpStatus.resolve(e.getHttpStatusCode());

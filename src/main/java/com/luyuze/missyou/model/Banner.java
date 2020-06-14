@@ -1,27 +1,29 @@
 package com.luyuze.missyou.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "banner")
-public class Banner {
+@Getter
+@Setter
+public class Banner extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 16)
     private String name;
 
-    @Transient
     private String description;
-
-    private String img;
 
     private String title;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    private String img;
+
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "bannerId")
     private List<BannerItem> items;
 }

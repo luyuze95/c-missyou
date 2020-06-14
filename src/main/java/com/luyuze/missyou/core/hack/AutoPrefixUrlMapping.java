@@ -8,22 +8,22 @@ import java.lang.reflect.Method;
 
 public class AutoPrefixUrlMapping extends RequestMappingHandlerMapping {
 
-    @Value("com.luyuze.missyou.api")
+    @Value("${missyou.api-package}")
     private String apiPackagePath;
 
     @Override
     protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
-        RequestMappingInfo mappingInfo = super.getMappingForMethod(method, handlerType);
-        if (mappingInfo != null) {
-            this.getPrefix(handlerType);
+        RequestMappingInfo mappingInfo =  super.getMappingForMethod(method, handlerType);
+        if(mappingInfo != null){
+            String prefix = this.getPrefix(handlerType);
+            return RequestMappingInfo.paths(prefix).build().combine(mappingInfo);
         }
-        return null;
+        return mappingInfo;
     }
 
-    private String getPrefix(Class<?> handlerType) {
+    private String getPrefix(Class<?> handlerType){
         String packageName = handlerType.getPackage().getName();
-        packageName.replaceAll(this.apiPackagePath, "");
-//        return dotPath.replace(".", "/");
-        return null;
+        String dotPath = packageName.replaceAll(this.apiPackagePath,"");
+        return dotPath.replace(".", "/");
     }
 }

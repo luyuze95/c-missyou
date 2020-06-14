@@ -1,5 +1,6 @@
 package com.luyuze.missyou.repository;
 
+
 import com.luyuze.missyou.model.Banner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
