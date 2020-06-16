@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Converter

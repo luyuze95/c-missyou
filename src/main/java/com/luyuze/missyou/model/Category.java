@@ -4,27 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
-@Where(clause = "delete_time is null")
-public class Banner extends BaseEntity {
-
+@Where(clause = "delete_time is null and online = 1")
+public class Category extends BaseEntity {
     @Id
     private Long id;
-
     private String name;
-
     private String description;
-
-    private String title;
-
+    private Boolean isRoot;
+    private Long parentId;
     private String img;
-
-    @OneToMany
-    @JoinColumn(name = "bannerId")
-    private List<BannerItem> items;
+    private Long index;
 }
