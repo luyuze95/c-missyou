@@ -24,7 +24,8 @@ public class SpuController {
     private SpuService spuService;
 
     @GetMapping("/id/{id}/detail")
-    public Spu getDetail(@PathVariable @Positive Long id) {
+    public Spu getDetail(
+            @PathVariable @Positive Long id) {
         Spu spu = spuService.getSpu(id);
         if (spu == null) {
             throw new NotFoundException(30003);
@@ -33,7 +34,8 @@ public class SpuController {
     }
 
     @GetMapping("/id/{id}/simplify")
-    public SpuSimplifyVO getSimplifySpu(@PathVariable @Positive Long id) {
+    public SpuSimplifyVO getSimplifySpu(
+            @PathVariable @Positive(message = "{id.positive}") Long id) {
         Spu spu = spuService.getSpu(id);
         if (spu == null) {
             throw new NotFoundException(30003);
@@ -44,10 +46,22 @@ public class SpuController {
     }
 
     @GetMapping("/latest")
-    public PagingDozer getLatestSpuList(@RequestParam(defaultValue = "0") Integer start,
-                                        @RequestParam(defaultValue = "10") Integer count) {
+    public PagingDozer<Spu, SpuSimplifyVO> getLatestSpuList(
+            @RequestParam(defaultValue = "0") Integer start,
+            @RequestParam(defaultValue = "10") Integer count) {
         PageCounter pageCounter = CommonUtil.convertToPageParameter(start, count);
         Page<Spu> spuList = spuService.getLatestPagingSpu(pageCounter.getPage(), pageCounter.getCount());
-        return new PagingDozer<>(spuList, SpuSimplifyVO.class);
+        return new PagingDozer<Spu, SpuSimplifyVO>(spuList, SpuSimplifyVO.class);
+    }
+
+    @GetMapping("/by/category/{id}")
+    public PagingDozer<Spu, SpuSimplifyVO> getByCategoryId(
+            @PathVariable @Positive Long id,
+            @RequestParam(name = "is_root", defaultValue = "false") Boolean isRoot,
+            @RequestParam(name = "start", defaultValue = "0") Integer start,
+            @RequestParam(name = "count", defaultValue = "10") Integer count) {
+        PageCounter pageCounter = CommonUtil.convertToPageParameter(start, count);
+        Page<Spu> page = spuService.getByCategory(id, isRoot, pageCounter.getPage(), pageCounter.getCount());
+        return new PagingDozer<>(page, SpuSimplifyVO.class);
     }
 }
