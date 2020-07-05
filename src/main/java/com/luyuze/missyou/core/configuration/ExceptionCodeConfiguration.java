@@ -23,7 +23,7 @@ public class ExceptionCodeConfiguration {
     }
 
 
-    public String getMessage(int code){
+    public String getMessage(int code) {
         return codes.get(code);
     }
 }
